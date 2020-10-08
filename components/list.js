@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { API } from "./apiService";
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faFilm } from '@fortawesome/free-solid-svg-icons'
 
 export default function MovieList() {
     const [ movies, setMovies ] = useState([{title:'Rambo',id:1}])
@@ -11,11 +13,14 @@ export default function MovieList() {
         .then(resp => setMovies(resp))
     }, [])
   return (
-    <View style={styles.container}>
+    <View>
+      <Text style={styles.title}> <FontAwesomeIcon style={styles.icon} icon={faFilm}/> MovieRater</Text>
         <FlatList
             data={movies}
             renderItem={({item}) => (
-                <Text key={item.id}>{item.title}</Text>
+              <View style={styles.item}>
+                <Text style={styles.itemText} key={item.id}>{item.title}</Text>
+              </View>
             )}
         />
       <StatusBar style="auto" />
@@ -30,4 +35,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  item: {
+    flex:1,
+    backgroundColor: '#282C35',
+    padding: 10,
+    height: 50,
+  },
+  itemText:{
+    color: 'white',
+    fontSize: 24,
+  },
+  title:{
+    backgroundColor: '#282C35',
+    color: 'orange',
+    fontSize: 40,
+    textAlign: 'center',
+    padding: 30,
+    borderBottomWidth: 2,
+    borderBottomColor: 'grey',
+  },
+  icon:{
+    color: 'white',
+    transform: [{rotate: '30deg'}],
+    backgroundColor: '#282C35'
+  }
 });
