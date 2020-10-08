@@ -2,8 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { API } from "./apiService";
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faFilm } from '@fortawesome/free-solid-svg-icons'
 
 export default function MovieList() {
     const [ movies, setMovies ] = useState([{title:'Rambo',id:1}])
@@ -14,7 +12,7 @@ export default function MovieList() {
     }, [])
   return (
     <View>
-      <Text style={styles.title}> <FontAwesomeIcon style={styles.icon} icon={faFilm}/> MovieRater</Text>
+      <Text style={styles.title}>  MovieRater</Text>
         <FlatList
             data={movies}
             renderItem={({item}) => (
