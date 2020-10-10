@@ -1,5 +1,4 @@
-import React from 'react';
-import { View, Text, StyleSheet, Button} from "react-native";
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 

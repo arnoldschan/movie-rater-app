@@ -64,10 +64,9 @@ export class API {
             'Content-Type': 'application/json',
             'Authorization': `Token ${this.token}`,
         },
-            body: JSON.stringify( {stars: rate + 1} )
+            body: JSON.stringify( {stars: rate} )
         })
         .then( resp => resp.json())
-        .then( resp => this.getDetails(mov_id))
         .catch( error => console.log(error))
         }
 
