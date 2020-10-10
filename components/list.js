@@ -30,7 +30,7 @@ export default function MovieList(props) {
   );
 }
 MovieList.navigationOptions = screenProps => ({
-  header: null,
+  headerShown: false,
 })
 
 const styles = StyleSheet.create({
