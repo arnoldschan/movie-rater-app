@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet} from "react-native";
+import { View, Text, StyleSheet, Button} from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
@@ -29,7 +29,11 @@ Detail.navigationOptions = screenProps => ({
     headerTitleStyle: {
         fontWeight: 'bold',
         fontSize: 24
-    }
+    },
+    headerRight: (
+        <Button title="Edit" color="white"
+        onPress={()=>{screenProps.navigation.navigate("Edit", {movie: screenProps.navigation.getParam('movie')})}}/>
+    )
 })
 const styles = StyleSheet.create({
     app:{
