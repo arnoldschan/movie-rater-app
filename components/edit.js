@@ -1,11 +1,16 @@
 import React, {useState} from 'react';
 import { View, Text, TextInput, StyleSheet, Button} from "react-native";
+import { API } from "./apiService";
 
 export default function Edit(props) {
     const movie = props.navigation.getParam('movie')
     const [ title, setTitle ] = useState(movie.title)
     const [ description, setDescription ] = useState(movie.description)
-
+    const saveChanges = ()=>{
+        new API().updateMovie(movie.id, {title: title, description: description})
+        .then(resp => resp.json())
+        .then(resp => props.navigation.navigate('Detail', {movie: resp}))
+    }
   return (
     <View style={styles.app}>
       <Text style={styles.text}>Title</Text>
@@ -18,7 +23,7 @@ export default function Edit(props) {
         placeholder="Description"
         onChangeText={(text)=>setDescription(text)}
         value={description}/>
-        <Button onPress={()=>props.navigation.goBack()}
+        <Button onPress={saveChanges}
         title="Save"/>
     </View>
   );
