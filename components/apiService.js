@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8001"
+const BASE_URL = "http://192.168.43.154:8001"
 
 export class API {
     constructor(){

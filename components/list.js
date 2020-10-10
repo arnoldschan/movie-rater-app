@@ -10,7 +10,7 @@ export default function MovieList(props) {
     useEffect(()=>{
         new API().getMovies()
         .then(resp => setMovies(resp))
-    }, [])
+    }, [movies])
   return (
     <View>
       <Text style={styles.title}>  MovieRater</Text>

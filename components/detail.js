@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
+import { View, Text, StyleSheet, Button, Alert} from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { API } from './apiService';
 
 export default function Detail(props) {
     const movie = props.navigation.getParam('movie')
+    const [highlight, setHighlight] = useState(0)
+    const saveRating = () => {
+        new API().updateRating(movie.id, highlight)
+        .then(resp=> Alert.alert("Rating", resp.message))
+    }
   return (
     <View style={styles.app}>
       <View style={styles.starContainer}>
@@ -15,6 +22,15 @@ export default function Detail(props) {
         <Text style={styles.text}>({movie.no_of_rating})</Text>
       </View>
       <Text style={styles.text}>{movie.description}</Text>
+      <View style={{borderColor: 'orange', borderWidth: 1, margin:10}}/>
+      <View style={styles.starContainer}>
+        <FontAwesomeIcon style={highlight > 0? styles.starPurple : styles.starGrey} icon={faStar} onPress={()=>setHighlight(1)} size={36}/>
+        <FontAwesomeIcon style={highlight > 1? styles.starPurple : styles.starGrey} icon={faStar} onPress={()=>setHighlight(2)} size={36}/>
+        <FontAwesomeIcon style={highlight > 2? styles.starPurple : styles.starGrey} icon={faStar} onPress={()=>setHighlight(3)} size={36}/>
+        <FontAwesomeIcon style={highlight > 3? styles.starPurple : styles.starGrey} icon={faStar} onPress={()=>setHighlight(4)} size={36}/>
+        <FontAwesomeIcon style={highlight > 4? styles.starPurple : styles.starGrey} icon={faStar} onPress={()=>setHighlight(5)} size={36}/>
+    </View>
+        <Button title="Save" onPress={saveRating}/>
     </View>
   );
 }
@@ -50,6 +66,12 @@ const styles = StyleSheet.create({
     },
     starOrange:{
         color: 'orange',
+    },
+    starPurple:{
+        color: 'purple',
+    },
+    starGrey:{
+        color: 'grey',
     },
     starWhite:{
         color: 'white',
