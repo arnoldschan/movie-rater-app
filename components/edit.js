@@ -4,12 +4,13 @@ import { API } from "./apiService";
 
 export default function Edit(props) {
     const movie = props.navigation.getParam('movie')
+    const token = props.navigation.getParam('token')
     const [ title, setTitle ] = useState(movie.title)
     const [ description, setDescription ] = useState(movie.description)
     const saveChanges = ()=>{
-        new API().updateMovie(movie.id, {title: title, description: description})
+        new API(token).updateMovie(movie.id, {title: title, description: description})
         .then(resp => resp.json())
-        .then(resp => props.navigation.navigate('Detail', {movie: resp}))
+        .then(resp => props.navigation.navigate('Detail', {movie: resp, token: token}))
     }
   return (
     <View style={styles.app}>

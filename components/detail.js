@@ -5,10 +5,12 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { API } from './apiService';
 
 export default function Detail(props) {
-    const movie = props.navigation.getParam('movie')
+    const movie = props.navigation.getParam('movie', '')
+    const token = props.navigation.getParam('token', '')
+    console.log(token)
     const [highlight, setHighlight] = useState(0)
     const saveRating = () => {
-        new API().updateRating(movie.id, highlight)
+        new API(token).updateRating(movie.id, highlight)
         .then(resp=> Alert.alert("Rating", resp.message))
     }
   return (
@@ -47,7 +49,8 @@ Detail.navigationOptions = screenProps => ({
     },
     headerRight: (
         <Button title="Edit" color="white"
-        onPress={()=>{screenProps.navigation.navigate("Edit", {movie: screenProps.navigation.getParam('movie')})}}/>
+        onPress={()=>{screenProps.navigation.navigate("Edit", {movie: screenProps.navigation.getParam('movie'),
+                                                               token: screenProps.navigation.getParam('token')})}}/>
     )
 })
 const styles = StyleSheet.create({

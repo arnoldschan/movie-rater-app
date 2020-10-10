@@ -1,8 +1,7 @@
 const BASE_URL = "http://192.168.43.154:8001"
 
 export class API {
-    constructor(){
-        const token = "12f17f8d7daa4f40a6155138e9894bfecccb1598"
+    constructor(token){
         this.token = token;
     }
     static loginUser(body){
