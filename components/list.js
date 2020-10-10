@@ -29,6 +29,9 @@ export default function MovieList(props) {
     </View>
   );
 }
+MovieList.navigationOptions = screenProps => ({
+  header: null,
+})
 
 const styles = StyleSheet.create({
   container: {
@@ -52,9 +55,11 @@ const styles = StyleSheet.create({
     color: 'orange',
     fontSize: 40,
     textAlign: 'center',
-    padding: 30,
+    textAlignVertical: 'center',
+    padding: 50,
+    paddingTop: 80,
     borderBottomWidth: 2,
-    borderBottomColor: 'grey',
+    borderBottomColor: 'white',
   },
   icon:{
     color: 'white',
