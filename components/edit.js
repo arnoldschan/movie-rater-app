@@ -11,12 +11,12 @@ export default function Edit(props) {
       <Text style={styles.text}>Title</Text>
       <TextInput style={styles.textInput}
         placeholder="Title"
-        onTextChange={(text)=>setTitle(text)}
+        onChangeText={(text)=>setTitle(text)}
         value={title}/>
       <Text style={styles.text}>Description</Text>
       <TextInput style={styles.textInput}
         placeholder="Description"
-        onTextChange={(text)=>setDescription(text)}
+        onChangeText={(text)=>setDescription(text)}
         value={description}/>
         <Button onPress={()=>props.navigation.goBack()}
         title="Save"/>
